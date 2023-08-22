@@ -1,0 +1,63 @@
+version: "3.8"
+services:
+  # PHP BACKEND APPLICATION
+  app-backend:
+    container_name: app-backend
+    build:
+      context: ../app-notifications-ms/
+      dockerfile: docker-compose/Dockerfile
+      args:
+        PHP_OPCACHE_ENABLE: 0
+        PHP_OPCACHE_ENABLE_CLI: 0
+        PHP_OPCACHE_VALIDATE_TIMESTAMPS: 0
+        PHP_OPCACHE_REVALIDATE_FREQ: 0
+    image: reciclare-notifications-app-back
+    environment:
+      - CONTAINER_ROLE=app-backend
+      - APP_NAME="Application Notifications Backend"
+      - APP_ENV="local"
+      - APP_DEBUG="true"
+      - APP_KEY="base64:JryWTFZdbNrr3Z51VNx+gbQEPTWV+tMvetwPNI3IFBU="
+      - DB_CONNECTION="pgsql"
+      - DB_HOST="notifications-db"
+      - DB_PORT="5432"
+      - DB_DATABASE="notifications"
+      - DB_USERNAME="postgres"
+      - DB_PASSWORD="postgres"
+    working_dir: /var/www
+    ports:
+      - "7075:8000"
+    links:
+      - notifications-db
+    depends_on:
+      - notifications-db
+  # FRONT END APPLICATION
+  app-frontend:
+    container_name: app-frontend
+    build:
+      context: ../app-notifications-frontend/
+      dockerfile: docker-compose/Dockerfile
+    image: reciclare-notifications-app-frontend
+    environment:
+      - CONTAINER_ROLE=app-frontend
+      - APP_NAME="Application Notifications Frontend"
+    working_dir: /var/www
+    volumes:
+      - ../:/var/www/
+    ports:
+      - "7074:80"
+    links:
+      - app-backend
+    depends_on:
+      - app-backend
+  # Database Server
+  notifications-db:
+    container_name: notifications-db
+    image: postgres
+    restart: always
+    ports:
+      - "45432:5432"
+    environment:
+      - POSTGRES_DB=notifications
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
