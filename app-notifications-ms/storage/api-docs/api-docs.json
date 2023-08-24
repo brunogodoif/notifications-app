@@ -1,0 +1,389 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Notifications API",
+        "description": "",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/notifications": {
+            "get": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "List notifications with pagination",
+                "operationId": "911565ad9aff9ba7eded3f189509e578",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items per page",
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "description of notification",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Create a new notification",
+                "operationId": "91f8e779a9e46cb5cdda969e5a928a94",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreNotificationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Notification created successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/api/notifications/{id}": {
+            "get": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Show a notification",
+                "operationId": "f2edf725f41dd6c9a9338a6a7b39d779",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Notification ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Notification not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Update a notification",
+                "operationId": "124a5fca66d1b363eebbdb6e82b90127",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Notification ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateNotificationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notification updated successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Notification not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Delete a notification",
+                "operationId": "54c4eb5ec5dc0d1e2916cec2fced1056",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Notification ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notification deleted successfully"
+                    },
+                    "404": {
+                        "description": "Notification not found"
+                    }
+                }
+            }
+        },
+        "/api/notifications/{id}/activate": {
+            "patch": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Activate a notification",
+                "operationId": "18965258963f4b563fd17c48959ab1aa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Notification ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Notification not found"
+                    }
+                }
+            }
+        },
+        "/api/notifications/{id}/deactivate": {
+            "patch": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Deactivate a notification",
+                "operationId": "c5f0092d4d9b231b2c30d77bdf0de535",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Notification ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeactivateNotificationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Notification not found"
+                    }
+                }
+            }
+        },
+        "/api/notifications/{id}/republish": {
+            "patch": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Republish a notification",
+                "operationId": "f4aad2eb4ef4eebf79a277daf821d364",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Notification ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Notification not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "DeactivateNotificationRequest": {
+                "required": [
+                    "inactivationReason"
+                ],
+                "properties": {
+                    "inactivationReason": {
+                        "type": "string",
+                        "example": "description of reason for inactivation"
+                    }
+                },
+                "type": "object"
+            },
+            "StoreNotificationRequest": {
+                "required": [
+                    "title",
+                    "description",
+                    "author",
+                    "idUser",
+                    "seen",
+                    "dateSeen",
+                    "alias",
+                    "published",
+                    "status"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "Title"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Description"
+                    },
+                    "author": {
+                        "type": "string",
+                        "example": "Author"
+                    },
+                    "idUser": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "seen": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "dateSeen": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-08-23"
+                    },
+                    "alias": {
+                        "type": "string",
+                        "example": "Alias"
+                    },
+                    "published": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "status": {
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateNotificationRequest": {
+                "required": [
+                    "title",
+                    "description",
+                    "author",
+                    "idUser",
+                    "seen",
+                    "dateSeen",
+                    "alias",
+                    "published",
+                    "status"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "Updated Title"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Updated Description"
+                    },
+                    "author": {
+                        "type": "string",
+                        "example": "Updated Author"
+                    },
+                    "idUser": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "seen": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "dateSeen": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-08-23"
+                    },
+                    "alias": {
+                        "type": "string",
+                        "example": "Updated Alias"
+                    },
+                    "published": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "status": {
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

@@ -5,6 +5,8 @@
       <list>
         <option value="$PROJECT_DIR$/notifications/tests/Unit" />
         <option value="$PROJECT_DIR$/notifications/tests/Feature" />
+        <option value="$PROJECT_DIR$/app-notifications-ms/tests/Unit" />
+        <option value="$PROJECT_DIR$/app-notifications-ms/tests/Feature" />
       </list>
     </option>
   </component>

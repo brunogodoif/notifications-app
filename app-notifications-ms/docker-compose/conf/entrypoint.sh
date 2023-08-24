@@ -14,6 +14,9 @@ php /var/www/artisan migrate
 echo "Run Seeders"
 php /var/www/artisan db:seed
 
+echo echo "Generate Docs Swagger"
+php artisan l5-swagger:generate
+
 echo "Up application backend"
 php-fpm -D
 nginx -g "daemon off;"

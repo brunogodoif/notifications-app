@@ -1,8 +1,8 @@
 version: "3.8"
 services:
   # PHP BACKEND APPLICATION
-  app-backend:
-    container_name: app-backend
+  notifications-app-backend:
+    container_name: notifications-app-backend
     build:
       context: ../app-notifications-ms/
       dockerfile: docker-compose/Dockerfile
@@ -11,9 +11,8 @@ services:
         PHP_OPCACHE_ENABLE_CLI: 0
         PHP_OPCACHE_VALIDATE_TIMESTAMPS: 0
         PHP_OPCACHE_REVALIDATE_FREQ: 0
-    image: reciclare-notifications-app-back
+    image: notifications-app-back
     environment:
-      - CONTAINER_ROLE=app-backend
       - APP_NAME="Application Notifications Backend"
       - APP_ENV="local"
       - APP_DEBUG="true"
@@ -32,24 +31,22 @@ services:
     depends_on:
       - notifications-db
   # FRONT END APPLICATION
-  app-frontend:
-    container_name: app-frontend
+  notifications-app-frontend:
+    container_name: notifications-app-frontend
     build:
       context: ../app-notifications-frontend/
       dockerfile: docker-compose/Dockerfile
-    image: reciclare-notifications-app-frontend
+    image: notifications-app-frontend
     environment:
-      - CONTAINER_ROLE=app-frontend
       - APP_NAME="Application Notifications Frontend"
     working_dir: /var/www
-    volumes:
-      - ../:/var/www/
+
     ports:
       - "7074:80"
     links:
-      - app-backend
+      - notifications-app-backend
     depends_on:
-      - app-backend
+      - notifications-app-backend
   # Database Server
   notifications-db:
     container_name: notifications-db
