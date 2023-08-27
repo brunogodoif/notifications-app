@@ -42,8 +42,8 @@ class StoreNotificationRequest extends FormRequest
             'description' => 'required|string|max:1000',
             'author' => 'required|string|max:50',
             'idUser' => 'required|integer',
-            'seen' => 'required|boolean',
-            'dateSeen' => 'required|date',
+            'seen' => 'nullable|boolean',
+            'dateSeen' => 'nullable|date',
             'alias' => 'required|string|max:50',
             'published' => 'required|boolean',
             'status' => 'required|boolean',
@@ -68,9 +68,6 @@ class StoreNotificationRequest extends FormRequest
 
             'idUser.required' => 'The [author] parameter is required.',
 
-            'seen.required' => 'The [seen] parameter is required.',
-
-            'dateSeen.required' => 'The [dateSeen] parameter is required.',
             'dateSeen.date' => 'The [dateSeen] parameter is in an invalid format.',
 
             'alias.required' => 'The [alias] parameter is required.',
