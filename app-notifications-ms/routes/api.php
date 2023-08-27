@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,12 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(['auth:sanctum']);
+    Route::get('/user', [AuthController::class, 'getUser'])->name('getUser')->middleware(['auth:sanctum']);
 });
-Route::apiResource('/notifications', NotificationController::class)->parameters([
-    'notifications' => 'id'
-]);
-Route::patch('notifications/{id}/activate', [NotificationController::class, 'activate'])->name('notifications.activate');
-Route::patch('notifications/{id}/deactivate', [NotificationController::class, 'deactivate'])->name('notifications.deactivate');
-Route::patch('notifications/{id}/republish', [NotificationController::class, 'republish'])->name('notifications.republish');
+
+Route::middleware(["auth:sanctum"])->group(function () {
+
+    Route::apiResource('/notifications', NotificationController::class)->parameters([
+        'notifications' => 'id'
+    ]);
+
+    Route::patch('notifications/{id}/activate', [NotificationController::class, 'activate'])->name('notifications.activate');
+    Route::patch('notifications/{id}/deactivate', [NotificationController::class, 'deactivate'])->name('notifications.deactivate');
+    Route::patch('notifications/{id}/republish', [NotificationController::class, 'republish'])->name('notifications.republish');
+
+});
+

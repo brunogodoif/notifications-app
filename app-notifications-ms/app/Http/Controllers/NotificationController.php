@@ -38,7 +38,8 @@ class NotificationController extends Controller
      *      @OA\Parameter(name="page", in="query", description="Page number", @OA\Schema(type="integer", default=1)),
      *      @OA\Parameter(name="limit", in="query", description="Items per page", @OA\Schema(type="integer", default=15)),
      *      @OA\Parameter(name="description", in="query", description="description of notification", @OA\Schema(type="string")),
-     *      @OA\Response(response=200, description="Successful operation")
+     *      @OA\Response(response=200, description="Successful operation"),
+     *      security={{"sanctum": {}}}
      * )
      */
     public function index(Request $request): JsonResponse
@@ -64,7 +65,8 @@ class NotificationController extends Controller
      *      tags={"Notifications"},
      *      @OA\Parameter(name="id", in="path", description="Notification ID", required=true, @OA\Schema(type="integer")),
      *      @OA\Response(response=200, description="Successful operation"),
-     *      @OA\Response(response=404, description="Notification not found")
+     *      @OA\Response(response=404, description="Notification not found"),
+     *      security={{"sanctum": {}}}
      * )
      */
     public function show(Request $request): JsonResponse
@@ -90,7 +92,8 @@ class NotificationController extends Controller
      *          @OA\JsonContent(ref="#/components/schemas/StoreNotificationRequest")
      *      ),
      *      @OA\Response(response=201, description="Notification created successfully"),
-     *      @OA\Response(response=400, description="Bad request")
+     *      @OA\Response(response=400, description="Bad request"),
+     *      security={{"sanctum": {}}}
      * )
      */
     public function store(StoreNotificationRequest $request): JsonResponse
@@ -117,7 +120,8 @@ class NotificationController extends Controller
      *      ),
      *      @OA\Response(response=200, description="Notification updated successfully"),
      *      @OA\Response(response=400, description="Bad request"),
-     *      @OA\Response(response=404, description="Notification not found")
+     *      @OA\Response(response=404, description="Notification not found"),
+     *      security={{"sanctum": {}}}
      * )
      */
     public function update(UpdateNotificationRequest $request): JsonResponse
@@ -143,7 +147,8 @@ class NotificationController extends Controller
      *      tags={"Notifications"},
      *      @OA\Parameter(name="id", in="path", description="Notification ID", required=true, @OA\Schema(type="integer")),
      *      @OA\Response(response=200, description="Notification deleted successfully"),
-     *      @OA\Response(response=404, description="Notification not found")
+     *      @OA\Response(response=404, description="Notification not found"),
+     *      security={{"sanctum": {}}}
      * )
      */
     public function destroy(Request $request): JsonResponse
@@ -164,7 +169,8 @@ class NotificationController extends Controller
      *      tags={"Notifications"},
      *      @OA\Parameter(name="id", in="path", description="Notification ID", required=true, @OA\Schema(type="integer")),
      *      @OA\Response(response=200, description="Successful operation"),
-     *      @OA\Response(response=404, description="Notification not found")
+     *      @OA\Response(response=404, description="Notification not found"),
+     *      security={{"sanctum": {}}}
      * )
      */
     public function activate(Request $request): JsonResponse
@@ -194,7 +200,8 @@ class NotificationController extends Controller
      *      ),
      *      @OA\Response(response=200, description="Successful operation"),
      *      @OA\Response(response=400, description="Bad request"),
-     *      @OA\Response(response=404, description="Notification not found")
+     *      @OA\Response(response=404, description="Notification not found"),
+     *      security={{"sanctum": {}}}
      * )
      */
     public function deactivate(DeactivateNotificationRequest $request): JsonResponse
@@ -220,7 +227,8 @@ class NotificationController extends Controller
      *      tags={"Notifications"},
      *      @OA\Parameter(name="id", in="path", description="Notification ID", required=true, @OA\Schema(type="integer")),
      *      @OA\Response(response=200, description="Successful operation"),
-     *      @OA\Response(response=404, description="Notification not found")
+     *      @OA\Response(response=404, description="Notification not found"),
+     *      security={{"sanctum": {}}}
      * )
      */
     public function republish(Request $request): JsonResponse
