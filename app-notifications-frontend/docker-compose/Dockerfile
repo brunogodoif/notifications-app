@@ -9,7 +9,7 @@ RUN npm install
 COPY . .
 
 # Build da aplicação Vue.js
-RUN npm run build
+RUN npm run build-dev
 
 # Use a imagem oficial do Nginx como base para a imagem final
 FROM nginx:latest

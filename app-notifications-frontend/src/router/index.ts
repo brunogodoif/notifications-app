@@ -1,23 +1,46 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import {createRouter, createWebHistory} from 'vue-router';
+import NotificationListing from "@/views/NotificationListing.vue";
+import NotificationForm from "@/views/NotificationForm.vue";
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
+const DEFAULT_TITLE = process.env.VUE_APP_TITLE + " - ";
+const routes = [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+        path: '/',
+        name: 'list-notification',
+        component: NotificationListing,
+        meta: {
+            title: DEFAULT_TITLE + "Lista de Notificações",
+            titleHeader: "Lista de Notificações",
+        },
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
-})
+        path: '/new-notification',
+        name: 'new-notification',
+        component: NotificationForm,
+        meta: {
+            title: DEFAULT_TITLE + "Nova Notificação",
+            titleHeader: "Nova Notificação",
+        },
+    },
+    {
+        path: '/update-notification/:id',
+        name: 'update-notification',
+        component: NotificationForm,
+        meta: {
+            title: DEFAULT_TITLE + "Atualização de Notificação",
+            titleHeader: "Atualização Notificação",
+        },
+    },
+];
+
+const router = createRouter({
+    history: createWebHistory(process.env.BASE_URL),
+    routes,
+});
+
+router.beforeEach((to, from, next) => {
+    document.title = to.meta.title as string;
+    next();
+});
 
 export default router
