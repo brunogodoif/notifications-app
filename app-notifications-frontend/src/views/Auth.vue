@@ -1,6 +1,6 @@
 <template>
     <div class="login-page">
-        <Alert :messages="$store.getters['notifications/getMessages']" class="alert_container" />
+        <Alert :messages="$store.getters['alerts/getMessages']" class="alert_container" />
         <Spinner v-if="$store.getters['spinner/getIsLoading']" />
         <div class="login-box">
             <div class="card card-outline card-primary">

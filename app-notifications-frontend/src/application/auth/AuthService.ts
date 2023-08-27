@@ -39,7 +39,7 @@ export default class AuthService {
     }
 
     async logout(): Promise<void> {
-        await store.dispatch('notifications/hideAllNotifications');
+        await store.dispatch('alerts/hideAllNotifications');
         await store.dispatch('auth/execLogout');
         setTimeout(() => {
             router.push({name: 'login'});

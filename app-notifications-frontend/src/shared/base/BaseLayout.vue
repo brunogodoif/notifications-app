@@ -2,7 +2,7 @@
     <BaseHeader/>
     <div class="content">
         <Spinner v-if="$store.getters['spinner/getIsLoading']"/>
-        <Alert :messages="$store.getters['notifications/getMessages']"></Alert>
+        <Alert :messages="$store.getters['alerts/getMessages']"></Alert>
         <slot name="content">
 
         </slot>

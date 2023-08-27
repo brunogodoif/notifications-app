@@ -6,7 +6,7 @@ import AuthModule from "@/application/store/auth/auth.module";
 export default createStore({
     modules: {
         spinner: SpinnerModule,
-        notifications: AlertsModule,
+        alerts: AlertsModule,
         auth: AuthModule
     }
 });

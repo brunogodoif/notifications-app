@@ -29,7 +29,7 @@ export default defineComponent({
     },
     methods: {
         closeNotification(id: number) {
-            store.dispatch('notifications/hideAlert', id)
+            store.dispatch('alerts/hideAlert', id)
         }
     },
 })
