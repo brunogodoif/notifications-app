@@ -80,7 +80,7 @@ export default class NotificationService implements INotificationService {
 
         return await persistRequest.then((responseRequest) => {
             const responseData = NotificationPersistResponse.fromApi(responseRequest.data);
-            store.dispatch('notifications/showAlertByStatusHttp', {
+            store.dispatch('alerts/showAlertByStatusHttp', {
                 message: "Notificação salva com sucesso!",
                 httpStatus: responseRequest.status
             });

@@ -246,7 +246,7 @@ export default defineComponent({
             if (this.$route.params.id != null) {
                 this.openToUpdate(this.$route.params.id.toString());
             } else {
-                store.dispatch('notifications/showAlertWarning', "Identificador não encontrado");
+                store.dispatch('alerts/showAlertWarning', "Identificador não encontrado");
                 this.$router.push({name: 'list-notification'});
             }
         }

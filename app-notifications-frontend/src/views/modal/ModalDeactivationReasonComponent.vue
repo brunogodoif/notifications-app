@@ -57,9 +57,9 @@ export default defineComponent({
             notificationService.deactivate(id, new NotificationDeactivatePersist(reason))
                 .then((response: boolean) => {
                     if (response) {
-                        store.dispatch('notifications/showAlertSuccess', "Notificação ID " + id + " inativada!");
+                        store.dispatch('alerts/showAlertSuccess', "Notificação ID " + id + " inativada!");
                     } else {
-                        store.dispatch('notifications/showAlertWarning', "Não foi possivel inativar a Notificação ID" + id);
+                        store.dispatch('alerts/showAlertWarning', "Não foi possivel inativar a Notificação ID" + id);
                     }
                     this.reason = null;
                     this.$emit('close', true);

@@ -20,7 +20,7 @@ const convertDateFromDbFormatToPatternBr = (dateString: string): string => {
 
 }
 const convertDateFromPatternBrToDb = (dateString: string): string => {
-    // Divido a string pelo único espaço que tem, depois divido o primeiro item do array pela barra '/', reverto a string e, finalmente, junto todos os itens da matriz com um hífen.
+
     if(dateString === undefined || dateString === null){
         return "";
     }

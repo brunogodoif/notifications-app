@@ -178,18 +178,18 @@ export default defineComponent({
             notificationService.delete(id).then((response) => {
                 if (response === true) {
                     this.listingNotification.unsetById(id);
-                    store.dispatch('notifications/showAlertSuccess', "Notificação ID " + id + " removido!");
+                    store.dispatch('alerts/showAlertSuccess', "Notificação ID " + id + " removido!");
                 } else {
-                    store.dispatch('notifications/showAlertWarning', "Não foi possivel remover a Notificação ID" + id);
+                    store.dispatch('alerts/showAlertWarning', "Não foi possivel remover a Notificação ID" + id);
                 }
             });
         },
         republishNotification(id: string): void {
             notificationService.republish(id).then((response) => {
                 if (response === true) {
-                    store.dispatch('notifications/showAlertSuccess', "Notificação ID " + id + " republicada!");
+                    store.dispatch('alerts/showAlertSuccess', "Notificação ID " + id + " republicada!");
                 } else {
-                    store.dispatch('notifications/showAlertWarning', "Não foi possivel republicar a Notificação ID" + id);
+                    store.dispatch('alerts/showAlertWarning', "Não foi possivel republicar a Notificação ID" + id);
                 }
                 this.listToTable(this.listingNotification.getPagination().getPage())
             });
@@ -199,7 +199,7 @@ export default defineComponent({
                 notificationService.activate(id)
                     .then((response: boolean) => {
                         this.listToTable(this.listingNotification.getPagination().getPage());
-                        store.dispatch('notifications/showAlertSuccess', "Notificação ID " + id + " ativada!");
+                        store.dispatch('alerts/showAlertSuccess', "Notificação ID " + id + " ativada!");
                     });
             } else {
                 this.showModalDeactivationReasonComponent(id);

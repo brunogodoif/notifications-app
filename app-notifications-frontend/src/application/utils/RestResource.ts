@@ -34,7 +34,7 @@ apiClient.interceptors.response.use(
         store.dispatch('spinner/updateIsLoading', false)
 
         if (error.code === "ERR_NETWORK") {
-            store.dispatch('notifications/showAlertByStatusHttp', {
+            store.dispatch('alerts/showAlertByStatusHttp', {
                 message: "Falha de comunicação com servidor",
                 httpStatus: 500
             });
@@ -42,12 +42,12 @@ apiClient.interceptors.response.use(
 
             if (error.response.status === 401) {
                 if (!error.response.request.responseURL.includes("auth/login")) {
-                    store.dispatch('notifications/showAlertWarning', "Acesso não autorizado!");
+                    store.dispatch('alerts/showAlertWarning', "Acesso não autorizado!");
                 }
             }
 
             if (error.response.status === 403) {
-                store.dispatch('notifications/showAlertWarning', "Acesso ao recurso não autorizado!");
+                store.dispatch('alerts/showAlertWarning', "Acesso ao recurso não autorizado!");
             }
 
         }

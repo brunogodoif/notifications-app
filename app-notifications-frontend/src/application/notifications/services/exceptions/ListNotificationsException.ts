@@ -4,7 +4,7 @@ export default class ListNotificationsException extends Error {
     constructor(message: string, status: string) {
         super(message);
         super.name = "ListNotificationsException";
-        store.dispatch('notifications/showAlertByStatusHttp', {
+        store.dispatch('alerts/showAlertByStatusHttp', {
             message: message,
             httpStatus: status
         });

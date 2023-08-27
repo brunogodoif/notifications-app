@@ -7,7 +7,7 @@
             </router-link>
             <div class="user-info d-flex align-items-center">
                 <img src="@/assets/avatar.png" alt="Usuário" class="user-avatar rounded-circle img-fluid"/>
-                <ButtonComponent :label="'Sair'" :icon="'fa fa-sign-out'"/>
+                <ButtonComponent :label="'Sair'" :icon="'fa fa-sign-out'" @click="toLogout"/>
             </div>
         </div>
     </header>
@@ -24,6 +24,11 @@ export default {
             version: process.env.VUE_APP_VERSION,
         };
     },
+    methods: {
+        toLogout() {
+            this.$router.push({name: 'logout'});
+        }
+    }
 };
 </script>
 <style scoped>
